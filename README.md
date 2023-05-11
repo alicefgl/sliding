@@ -1,6 +1,5 @@
 # sliding
-CONSEGNA DELL'ESERCIZIO:
-# Larghest Series Product
+# CONSEGNA DELL'ESERCIZIO: Larghest Series Product
 
 Data una stringa formata solo da cifre, calcolare il prodotto più grande per una sua sottostringa contigua di cifre di lunghezza N.
 
