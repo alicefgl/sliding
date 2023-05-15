@@ -15,15 +15,40 @@ Data una stringa formata solo da cifre, calcolare il prodotto più grande per un
 
 Si dichiarano due vettori di interi che hanno come dimensione la lunghezza della stringa data digits.
 
-```
+```csharp
         int[] valori = new int[digits.Length];
         int[] array = new int[digits.Length];
-```C#
-
+```
 A questo punto si esegue il primo ciclo, che si esegue per ogni valore contenuto in uno degli array, in quanto lo scopo di questo primo for è quello di trasferire i dati della stringa digits (convertiti in intero) all'interno del vettore array.
 
-```
+```csharp
         for (int i = 0; i < digits.Length; i++){
             array[i] = Convert.ToInt32(digits[i]);
         }
-```C#
+```
+
+Se span è uguale a 0, il prodotto massimo possibile è 1, che viene fornito come valore di ritorno.
+
+```csharp
+        if( span==0 )
+            return 1;
+```
+Si esegue il confronto tra un elemento dell'array e quello successivo, per determinare quale dei due sia il maggiore. Se il primo valore confrontato è maggiore del secondo, quel valore convertito viene posto nell'array valori in posizione i. 
+
+```csharp
+        for (int i = 0; i < array.Length; i++){
+            if (array[i] > array[i + 1])
+            {
+                valori[i] = Convert.ToInt32(array[i]);
+                for (int j = 0; j < span; j++)
+                {
+                    if (array[i - (j+1)] > array[i + (j+1)]){
+                        valori[i + (j + 1)] = Convert.ToInt32(array[i - (j + 1)]);
+                    }
+                    else{
+                        valori[i + (j + 1)] = Convert.ToInt32(array[i - (j + 1)]);
+                    }
+                }
+            }
+        }
+```
