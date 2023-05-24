@@ -13,21 +13,19 @@ Data una stringa formata solo da cifre, calcolare il prodotto più grande per un
 
 # Procedimento
 
-Si dichiarano due vettori di interi che hanno come dimensione la lunghezza della stringa data digits.
+Si dichiara un vettore di caratteri che contiene i valori della stringa data digits convertiti in caratteri.
 
 ```csharp
-        int[] valori = new int[digits.Length];
-        int[] array = new int[digits.Length];
+       char[] array=digits.ToCharArray();
 ```
-A questo punto si esegue il primo ciclo, che si esegue per ogni valore contenuto in uno degli array, in quanto lo scopo di questo primo for è quello di trasferire i dati della stringa digits (convertiti in intero) all'interno del vettore array.
+Se il numero della serie cifre inserito è maggiore della lunghezza stessa dell'array oppure (or) è minore di zero, non è possibile proseguire con l'esecuzione del programma (il valore inserito non è valido)
 
 ```csharp
-        for (int i = 0; i < digits.Length; i++){
-            array[i] = Convert.ToInt32(digits[i]);
+        if (span>array.Length || span<0){
+            throw new ArgumentException();
         }
 ```
-
-Se span è uguale a 0, il prodotto massimo possibile è 1, che viene fornito come valore di ritorno.
+altrimenti, se span è uguale a 0 è possibile notare che il prodotto massimo calcolabile è 1, che viene fornito come valore di ritorno.
 
 ```csharp
         if( span==0 )
@@ -35,6 +33,7 @@ Se span è uguale a 0, il prodotto massimo possibile è 1, che viene fornito com
 ```
 Assegnando un valore iniziale a prodotto pari a 1 (quindi una volta entrati nel ciclo esterno) si passa all'esecuzione del ciclo interno, in cui viene effettuato il prodotto tra il prodotto attuale e gli elementi del vettore (con indice j).
 Se il prodotto risulta essere maggiore del valore contenuto nella variabile temporanea, si sostituisce quest'ultimo con il prodotto stesso, per poi restituirlo come valore di ritorno.
+
 ```csharp
         for(int i=0; i<=array.Length-span;i++){
             prodotto=1;
