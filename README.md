@@ -33,22 +33,18 @@ Se span è uguale a 0, il prodotto massimo possibile è 1, che viene fornito com
         if( span==0 )
             return 1;
 ```
-Si esegue il confronto tra un elemento dell'array e quello successivo, per determinare quale dei due sia il maggiore. Se il primo valore confrontato è maggiore del secondo, quel valore convertito viene posto nell'array valori in posizione i. 
-
+Assegnando un valore iniziale a prodotto pari a 1 (quindi una volta entrati nel ciclo esterno) si passa all'esecuzione del ciclo interno, in cui viene effettuato il prodotto tra il prodotto attuale e gli elementi del vettore (con indice j).
+Se il prodotto risulta essere maggiore del valore contenuto nella variabile temporanea, si sostituisce quest'ultimo con il prodotto stesso, per poi restituirlo come valore di ritorno.
 ```csharp
-        for (int i = 0; i < array.Length; i++){
-            if (array[i] > array[i + 1])
+        for(int i=0; i<=array.Length-span;i++){
+            prodotto=1;
+            for(int j=i; j<i+span; j++){
+                prodotto=prodotto * Convert.ToInt64(Char.GetNumericValue(array[j]));
+            }
+            if(prodotto>tmp)
             {
-                valori[i] = Convert.ToInt32(array[i]);
-                for (int j = 0; j < span; j++)
-                {
-                    if (array[i - (j+1)] > array[i + (j+1)]){
-                        valori[i + (j + 1)] = Convert.ToInt32(array[i - (j + 1)]);
-                    }
-                    else{
-                        valori[i + (j + 1)] = Convert.ToInt32(array[i - (j + 1)]);
-                    }
-                }
+                tmp=prodotto;
             }
         }
+        return tmp;
 ```
